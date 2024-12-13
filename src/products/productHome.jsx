@@ -5,7 +5,6 @@ import * as service from './ProductApiService';
 import ProductList from './productList';
 import ProductDetails from './productDetails';
 
-
 function ProductHome() {
     const [productList, setProductList] = useState([]);
     const [selectedProduct, setSelectedProduct] = useState(new Product(0, '', 0, 0, false));

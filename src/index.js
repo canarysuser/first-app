@@ -1,7 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-import App, {Greeting} from './App';
+import App, { Greeting } from './App';
+import { BrowserRouter } from 'react-router';
 //import reportWebVitals from './reportWebVitals';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -12,14 +13,15 @@ root.render(
   //2. React Fragment which is defined using <> </>
   //3. Every React Component should be Pascal-Cased and never camel cased
   //4. lower-cased/camel-cased element names are reserved for HTML elements
-    
-  <App />  
+  <BrowserRouter>
+    <App />
+  </BrowserRouter>
 
 
-    //App component renders() to produce HTML elements 
-    //React plugs in the generated HTML into the Browsers' DOM 
-    //The moment the Browser DOM is updated, the browser will re-render the DOM
-    //Re-rendering HTML DOM refreshes the page. 
+  //App component renders() to produce HTML elements 
+  //React plugs in the generated HTML into the Browsers' DOM 
+  //The moment the Browser DOM is updated, the browser will re-render the DOM
+  //Re-rendering HTML DOM refreshes the page. 
 );
 
 // If you want to start measuring performance in your app, pass a function

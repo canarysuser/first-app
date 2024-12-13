@@ -1,18 +1,17 @@
-import axios from 'axios';
-const URL = "http://localhost:5000/products";
+//import axios from 'axios';
 
-const productList = [];
-const axiosInstance = axios.create({
-    baseURL:'http://localhost:5000',
-    timeout: 1000, 
-    headers: {'Content-Type':'application/json'},
-    maxBodyLength: 1000,
-    maxContentLength:65536
-})
+const URL = "http://localhost:5000/products";
+// const axiosInstance = axios.create({
+//     baseURL:'http://localhost:5000',
+//     timeout: 1000, 
+//     headers: {'Content-Type':'application/json'},
+//     maxBodyLength: 1000,
+//     maxContentLength:65536
+// })
 export async function getAllProducts() {
     //var response = await axiosInstance.get('products');
-    var response = await axios({method: 'GET', url:URL});
-    return response.data;
+    // var response = await axios({method: 'GET', url:URL});
+    // return response.data;
 }
 
 export async function getProductDetails(productId) {
@@ -25,8 +24,12 @@ export async function getProductDetails(productId) {
 export async function upsert(model) {
     let method = 'POST'; //for INSERT operation
     let pURL = `${URL}`;
+    let token = window.sessionStorage.getItem('token');
+    if(!token) { //throw error.
+    }
     let headers = {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        'Authorization':`Bearer ${token}`
     };
     var item = await getProductDetails(model.productId);
     if (item) {

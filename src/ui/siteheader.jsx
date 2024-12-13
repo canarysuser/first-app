@@ -1,4 +1,6 @@
 import React from 'react'
+import Login from './login'
+import { Link, NavLink } from 'react-router'
 
 function Siteheader() {
     return (
@@ -11,13 +13,18 @@ function Siteheader() {
                 <div className="collapse navbar-collapse" id="navbarNav">
                     <ul className="navbar-nav">
                         <li className="nav-item">
-                            <a className="nav-link active" aria-current="page" href="#">Home</a>
+                            <NavLink className="nav-link active" to={"/"} >Home</NavLink>
                         </li>
                         <li className="nav-item">
-                            <a className="nav-link" href="#">Products</a>
+                            <NavLink className="nav-link" to={"/products"}>Products</NavLink>
                         </li>
-                        
+                        <li className="nav-item">
+                            <NavLink className="nav-link" to={"/routed"}>Routed</NavLink>
+                        </li>
                     </ul>
+                </div>
+                <div>
+                <Link className="btn btn-outline-danger" to={'/login'} >Login</Link>
                 </div>
             </div>
         </nav>

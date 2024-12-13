@@ -1,8 +1,11 @@
-import { render, screen } from '@testing-library/react';
+import { fireEvent, render, screen } from '@testing-library/react';
 import App from './App';
+import { BrowserRouter } from 'react-router';
+
 
 test('renders learn react link', () => {
-  render(<App />);
-  const linkElement = screen.getByText(/learn react/i);
+  render(<BrowserRouter> <App /></BrowserRouter>);
+  const linkElement = screen.getByText(/Northwind Traders/i);
   expect(linkElement).toBeInTheDocument();
 });
+
