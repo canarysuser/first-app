@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import Product from './product';
 import * as service from './productService';
 import ProductList from './productList';
+import ProductDetails from './productDetails';
 
 function ProductHome() {
     const [productList, setProductList] = useState([]);
@@ -12,7 +13,7 @@ function ProductHome() {
             var list = service.getAllProducts();
             setProductList(list);
         }
-        console.log("useEffect called.")
+        //console.log("useEffect called.")
     },[selectedProduct])
 
     var onSelectItem= (id)=> {
@@ -20,9 +21,23 @@ function ProductHome() {
        var item = service.getProductDetails(id); 
        setSelectedProduct(item);
     }
+    var onModelChanged = (model) => {
+        service.upsert(model); 
+        var list = service.getAllProducts(); 
+        setProductList([...list]);
+    }
+    var onRemoveItem = (id)=>{
+        service.remove(id); 
+        var list = service.getAllProducts(); 
+        setProductList([...list]);
+    }
+    var onAddNewItem = ()=>{
+        let obj=new Product(0, '', 0, 0, false);
+        setSelectedProduct(obj)
+    }
     return (
-        <>
-            <h3 className='bg-primary text-center p-3 '>Product Management</h3>
+        <div className='mx-5'>
+            <h3 className='bg-primary text-center p-3'>Product Management</h3>
             <div className='row'>
                 <div className='col-6'>
                     {
@@ -31,16 +46,20 @@ function ProductHome() {
                             <p>No records to show</p>
                     }
                     <ProductList productList={productList}
-                                 selectItem={onSelectItem}/>
+                                 selectItem={onSelectItem}
+                                 removeItem={onRemoveItem}
+                                 addNewItem={onAddNewItem}/>
                 </div>
                 <div className='col-6'>
-                    Product Details Component goes here
-                    Selected Product: 
+                 
+                    {/* Selected Product: 
                     <br/>
                     {JSON.stringify(selectedProduct)}
+                    <br/> */}
+                    <ProductDetails model={selectedProduct} onSubmit={onModelChanged}/>
                 </div>
             </div>
-        </>
+        </div>
     )
 
 }

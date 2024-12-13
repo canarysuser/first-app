@@ -3,8 +3,14 @@ import React from 'react'
 function ProductList(props) {
   return (
     <div className='card shadow mr-auto w-75'>
-        <div className='card-header bg-warning'>
-            <h4 className='text-center text-white p-1'>Product List</h4>
+        <div className='card-header bg-warning d-flex '>
+            <h4 className='text-center text-white flex-grow-1'>Product List</h4>
+            <div>
+            <button className='btn btn-outline-dark text-end' type="button" 
+            onClick={(e)=>props.addNewItem()}>
+                Add New
+            </button>
+            </div>
         </div>
         <div className='card-body'>
             <table className='table table-dark table-striped table-hover'>
@@ -21,6 +27,10 @@ function ProductList(props) {
                                     <button className='btn btn-sm btn-outline-success'
                                             onClick={(e)=>props.selectItem(value.productId)}>
                                                 Select
+                                    </button>
+                                    <button className='btn btn-sm btn-outline-danger'
+                                            onClick={(e)=>props.removeItem(value.productId)}>
+                                                Remove
                                     </button>
                                 </td>
                             </tr>
